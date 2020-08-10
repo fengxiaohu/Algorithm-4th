@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
+import edu.princeton.cs.algs4.*;
 
 public class SymbolGraph {
     private ST<String,Integer> st;
