@@ -1,0 +1,126 @@
+import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.In;
+public class PrimMST {
+
+    private static final double FLOATING_POINT_EPSILON = 1E-12;
+    private Edge[] edgeto;
+    private double[] distTo;
+    private boolean[] marked;
+    private IndexMinPQ<Double> pq;
+    
+
+    public PrimMST(EdgeWeightedGraph G)
+    {
+        edgeto = new Edge[G.V()];
+        distTo = new double[G.V()];
+        marked = new boolean[G.V()];
+        pq = new IndexMinPQ<Double>(G.V());
+        for(int v=0;v<G.V();v++)
+        {
+            distTo[v] = Double.POSITIVE_INFINITY;
+        }
+        for(int v=0;v<G.V();v++)
+        {
+            if(!marked[v]) prim(G,v); 
+        }
+        assert check(G);
+    }
+    private void prim(EdgeWeightedGraph G,int s)
+    {
+        distTo[s] = 0.0;
+        pq.insert(s, distTo[s]);
+        
+        while(!pq.isEmpty())
+        {
+            int v = pq.delMin();
+            scan(G,v);
+        }
+
+    }
+    private void scan(EdgeWeightedGraph G,int v)
+    {
+        marked[v] = true;
+        //  遍历指定顶点的所有边 
+        for(Edge e:G.adj(v))
+        {
+            int w = e.other(v);// 相应边所连接的另外一个顶点
+            if(marked[w]) continue;
+            //将目标顶点W 更新到v所在的最小生成子树，是否需要更新路径
+            if(e.weight()<distTo[w])
+            {
+                distTo[w] = e.weight();
+                edgeto[w] = e;
+                if(pq.contains(w)) pq.decreaseKey(w,distTo[w]);
+                else pq.insert(w, distTo[w]);//pq不包含w,就插入最新队列中
+            }
+        }
+    }
+    public Iterable<Edge> edges()
+    {
+        Queue<Edge> mst = new Queue<Edge>();
+        for(int v=0;v<edgeto.length;v++)
+        {
+            Edge e = edgeto[v];
+            if(e!=null)
+            {
+                mst.enqueue(e);
+            }
+
+        }   
+        return mst;
+    }
+    public double weight()
+    {
+        double weight = 0.0;
+        for(Edge e:edges())
+        {
+            weight +=e.weight();
+        }
+        return weight;
+    }
+    private boolean check(EdgeWeightedGraph G)
+    {
+        // check weight
+        double totalWeight = 0.0;
+        for (Edge e : edges()) {
+            totalWeight += e.weight();
+        }
+        if (Math.abs(totalWeight - weight()) > FLOATING_POINT_EPSILON) {
+            System.err.printf("Weight of edges does not equal weight(): %f vs. %f\n", totalWeight, weight());
+            return false;
+        }
+
+        // check that it is acyclic
+        UF uf = new UF(G.V());
+        for (Edge e : edges()) {
+            int v = e.either(), w = e.other(v);
+            if (uf.find(v) == uf.find(w)) {
+                System.err.println("Not a forest");
+                return false;
+            }
+            uf.union(v, w);
+        }
+
+        // check that it is a spanning forest
+        for (Edge e : G.edges()) {
+            int v = e.either(), w = e.other(v);
+            if (uf.find(v) != uf.find(w)) {
+                System.err.println("Not a spanning forest");
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args)
+    {
+        In in = new In(args[0]);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
+        PrimMST mst = new PrimMST(G);
+        for(Edge e:mst.edges())
+        {
+            StdOut.println(e);
+        }
+        StdOut.printf("%.5f\n", mst.weight());
+    }
+
+}
