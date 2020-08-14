@@ -108,9 +108,12 @@ demo均使用Java，有关java的基础用法，可以参考https://www.runoob.c
   - [选择排序（Selectio Sort）](#选择排序)
   - [冒泡排序（Bubbling Sort）](#冒泡排序)
   - [冒泡排序（Bubbling Sort）](#冒泡排序)
-  - [查找](#查找)
-
+- [查找](#查找)
   - [符号表(Symbol table)](#符号表)
+  - [二叉查找树(Binary search tree](#二叉查找树)
+  - [平衡查找树(Balanced search tree)](#平衡查找树)
+  - [散列表(Hash table)](#哈希表)
+  - [相关应用(related application)](#应用) 
   
 ## 内容
 
