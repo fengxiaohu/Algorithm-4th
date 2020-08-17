@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.GraphGenerator;
+import edu.princeton.cs.algs4.*;
 /*
 public class Bipartite {
     private boolean isBipartite;

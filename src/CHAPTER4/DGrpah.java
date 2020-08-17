@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import edu.princeton.cs.algs4.*;
 
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;

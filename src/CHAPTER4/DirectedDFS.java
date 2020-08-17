@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
-
+import edu.princeton.cs.algs4.*;
 public class DirectedDFS {
     private boolean[] marked;
     private int count;

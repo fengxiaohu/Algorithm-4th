@@ -4,6 +4,7 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.*;
 public class Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
     

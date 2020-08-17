@@ -1,6 +1,7 @@
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.SymbolGraph;
+import edu.princeton.cs.algs4.*;
 
 public class DegreesOfSeparation {
     private DegreesOfSeparation()
