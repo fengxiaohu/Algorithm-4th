@@ -241,7 +241,7 @@ demo均使用Java，有关java的基础用法，可以参考https://www.runoob.c
   ```
 
   如下图所示：
-  ![image](https://github.com/fengxiaohu/Algorithm-4th-/blob/master/img/redirectImg.png)
+  ![image](https://github.com/fengxiaohu/Algorithm-4th-/blob/master/img/redirect img.PNG)
 
   ###### 输出
 
